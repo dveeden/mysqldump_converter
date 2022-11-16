@@ -48,6 +48,8 @@ func main() {
 	defer fh.Close()
 
 	scanner := bufio.NewScanner(fh)
+	buf := make([]byte, 0, 10*1024*1024)
+	scanner.Buffer(buf, 5*1024*1024)
 	var schema, filename string
 	var outputFile *os.File
 	for scanner.Scan() {
